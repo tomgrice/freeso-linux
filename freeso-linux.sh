@@ -14,11 +14,16 @@ echo "Game file location: $GAMEDIR"
 mkdir -p $TEMPDIR && cd $TEMPDIR
 mkdir -p $GAMEDIR
 
-echo -e "\nUpdating apt sources..."
-sudo apt update -y
+echo -e "\nDetermining package manager..."
+if which apt; then PACKAGEUPDATE="apt update -y"; PACKAGEINSTALL="apt install -y unzip cabextract curl mono-complete"; fi
+if which pacman; then PACKAGEUPDATE="pacman -Syy"; PACKAGEINSTALL="pacman -S --noconfirm unzip cabextract curl mono"; fi
 
-echo -e "\nInstalling dependencies (unzip/cabextract/curl/mono-complete)..."
-sudo apt install -y unzip cabextract curl mono-complete
+echo -e "\nUpdating sources..."
+
+sudo ${PACKAGEUPDATE}
+
+echo -e "\nInstalling dependencies (unzip/cabextract/curl/mono)..."
+sudo ${PACKAGEINSTALL}
 
 clear -x
 
