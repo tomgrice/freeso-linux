@@ -34,6 +34,9 @@ wget -O - https://raw.githubusercontent.com/tomgrice/freeso-linux/main/freeso-li
 3) Run the installer: `./freeso-linux-apt.sh` or `bash freeso-linux-apt.sh`
 4) Run the game in 2D mode: `mono ~/freeso/FreeSO.exe` or 3D mode: `mono ~/freeso/FreeSO.exe -3d`
 
+### Screenshot
+![freeso-linux running on Ubuntu Budgie 22.04.1 LTS](https://user-images.githubusercontent.com/14261788/195988756-e32d648f-0c02-48c6-afb9-d963fa1aa228.png)
+
 ## Planned Features
 - [x] Install dependencies.
 - [x] Download required game files and extract.
