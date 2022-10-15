@@ -40,6 +40,7 @@ wget -O - https://raw.githubusercontent.com/tomgrice/freeso-linux/main/freeso-li
 - [ ] Application launcher/icon in system menu.
 - [ ] Add support for multiple Linux distributions/package managers (e.g Arch/AUR, Fedora/RPM).
 - [ ] Improve script styling.
+- [ ] ARM chip/Raspberry Pi support (arm64/armhf)
 - [ ] User to specify installation of optional packages (i.e RemeshPackage).
 - [ ] Automatic updating of optional components (i.e. RemeshPackage).
 - [ ] Slim down dependencies (specify required mono-* packages).
