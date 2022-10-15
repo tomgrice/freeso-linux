@@ -8,7 +8,7 @@ The aim of the project is to allow FreeSO to be installed easily on Linux-based 
 
 FreeSO is an open-source implementation of the 2002 Massively Multiplayer community game, The Sims Online, developed by [riperiperi](https://github.com/riperiperi) in C# with MonoGame (XNA).
 
-You can find out more about FreeSO on the game website: [https://www.freeso.org] or the official GitHub repo: [https://github.com/riperiperi/FreeSO].
+You can find out more about FreeSO on the game website: https://www.freeso.org or the official GitHub repo: https://github.com/riperiperi/FreeSO.
 
 
 ## Usage
