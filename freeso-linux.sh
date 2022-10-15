@@ -17,6 +17,8 @@ mkdir -p $GAMEDIR
 echo -e "\nDetermining package manager..."
 if which apt; then PACKAGEUPDATE="apt update -y"; PACKAGEINSTALL="apt install -y unzip cabextract curl mono-complete"; fi
 if which pacman; then PACKAGEUPDATE="pacman -Syy"; PACKAGEINSTALL="pacman -S --noconfirm unzip cabextract curl mono"; fi
+if which yum; then PACKAGEUPDATE="yum update -y"; PACKAGEINSTALL="yum install -y unzip cabextract curl mono-complete"; fi
+if which zypper; then PACKAGEUPDATE="zypper update -y"; PACKAGEINSTALL="zypper install -y unzip cabextract curl mono-complete"; fi
 
 echo -e "\nUpdating sources..."
 
@@ -52,4 +54,4 @@ cabextract -qq -d "${GAMEDIR}/game" "${TEMPDIR}/tso/Data1.cab"
 echo -e "\nCleaning up temporary files"
 sudo rm -R "${TEMPDIR}"
 
-echo -e "\nInstall complete!\nRun game using: 'mono ${GAMEDIR}/FreeSO.exe -3d'"
+echo -e "\nInstall complete!\nRun game using: 'mono ${GAMEDIR}/FreeSO.exe' - add -3d flag to launch in 3D mode."
