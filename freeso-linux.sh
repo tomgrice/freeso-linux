@@ -53,6 +53,6 @@ unzip -q -o RemeshPackage.zip -d "${GAMEDIR}/Content/MeshReplace"
 cabextract -qq -d "${GAMEDIR}/game" "${TEMPDIR}/tso/Data1.cab"
 
 echo -e "\nCleaning up temporary files"
-sudo rm -R "${TEMPDIR}"
+rm -R "${TEMPDIR}"
 
 echo -e "\nInstall complete!\nRun game using: 'mono ${GAMEDIR}/FreeSO.exe' - add -3d flag to launch in 3D mode."
