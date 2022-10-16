@@ -17,7 +17,7 @@ To install FreeSO using freeso-linux, use one of the following methods.
 You must run the script as a local user (i.e, not root), however you will be asked for your sudo password to allow dependencies to be installed. 
 
 ## Compatibility
-This script should work on any recent Ubuntu-based distribution, however it has been tested and fully working on these systems:
+This script should work on any recent Ubuntu, RHEL/Fedora, Arch (Manjaro, EndeavourOS) or openSUSE based distributions, however it has been tested as working on these systems:
 * Ubuntu 22.04.01 LTS
 * Pop_OS! 22.04 (Jammy)
 * EndeavourOS Artemis Nova 22.9 (Arch based)
@@ -27,13 +27,13 @@ This script should work on any recent Ubuntu-based distribution, however it has 
 ### Quick Start (one-liner)
 Open your Terminal and run the command:
 ```
-wget -O - https://raw.githubusercontent.com/tomgrice/freeso-linux/main/freeso-linux-apt.sh | bash
+wget -O - https://raw.githubusercontent.com/tomgrice/freeso-linux/main/freeso-linux.sh | bash
 ```
 
 ### Manual Install
-1) Download 'freeso-linux-apt.sh' from this repository or the latest release package.
-2) Allow the script to be executed: `chmod +x freeso-linux-apt.sh` 
-3) Run the installer: `./freeso-linux-apt.sh` or `bash freeso-linux-apt.sh`
+1) Download 'freeso-linux.sh' from this repository or the latest release package.
+2) Allow the script to be executed: `chmod +x freeso-linux.sh` 
+3) Run the installer: `./freeso-linux.sh` or `bash freeso-linux.sh`
 4) Run the game in 2D mode: `mono ~/freeso/FreeSO.exe` or 3D mode: `mono ~/freeso/FreeSO.exe -3d`
 
 ### Screenshot
@@ -44,7 +44,7 @@ wget -O - https://raw.githubusercontent.com/tomgrice/freeso-linux/main/freeso-li
 - [x] Download required game files and extract.
 - [ ] User-specified install location.
 - [ ] Application launcher/icon in system menu.
-- [ ] Add support for multiple Linux distributions/package managers (e.g Arch/AUR, Fedora/RPM).
+- [x] Add support for multiple Linux distributions/package managers (e.g Arch/AUR, Fedora/RPM).
 - [ ] Improve script styling.
 - [ ] ARM chip/Raspberry Pi support (arm64/armhf)
 - [ ] User to specify installation of optional packages (i.e RemeshPackage).
