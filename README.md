@@ -20,6 +20,7 @@ You must run the script as a local user (i.e, not root), however you will be ask
 This script should work on any recent Ubuntu-based distribution, however it has been tested and fully working on these systems:
 * Ubuntu 22.04.01 LTS
 * Pop_OS! 22.04 (Jammy)
+* EndeavourOS Artemis Nova 22.9 (Arch based)
 
 ## Usage
 ### Quick Start (one-liner)
