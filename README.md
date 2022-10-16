@@ -21,6 +21,7 @@ This script should work on any recent Ubuntu-based distribution, however it has 
 * Ubuntu 22.04.01 LTS
 * Pop_OS! 22.04 (Jammy)
 * EndeavourOS Artemis Nova 22.9 (Arch based)
+* Fedora 36
 
 ## Usage
 ### Quick Start (one-liner)
