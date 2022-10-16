@@ -22,6 +22,7 @@ This script should work on any recent Ubuntu, RHEL/Fedora, Arch (Manjaro, Endeav
 * Pop_OS! 22.04 (Jammy)
 * EndeavourOS Artemis Nova 22.9 (Arch based)
 * Fedora 36
+* openSUSE Tumbleweed (16/10/2022)
 
 ## Usage
 ### Quick Start (one-liner)
