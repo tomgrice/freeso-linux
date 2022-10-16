@@ -14,11 +14,19 @@ echo "Game file location: $GAMEDIR"
 mkdir -p $TEMPDIR && cd $TEMPDIR
 mkdir -p $GAMEDIR
 
-echo -e "\nUpdating apt sources..."
-sudo apt update -y
+echo -e "\nDetermining package manager..."
+if which apt; then PACKAGEUPDATE="apt update -y"; PACKAGEINSTALL="apt install -y unzip cabextract curl mono-complete"; fi
+if which pacman; then PACKAGEUPDATE="pacman -Syy"; PACKAGEINSTALL="pacman -S --noconfirm unzip cabextract curl mono"; fi
+if which yum; then PACKAGEUPDATE="yum check-update -y"; PACKAGEINSTALL="yum install -y unzip cabextract curl mono-complete"; fi
+if which dnf; then PACKAGEUPDATE="dnf check-update -y"; PACKAGEINSTALL="dnf install -y unzip cabextract curl mono-complete"; fi
+if which zypper; then PACKAGEUPDATE="zypper refresh -y"; PACKAGEINSTALL="zypper install -y unzip cabextract curl mono-complete"; fi
 
-echo -e "\nInstalling dependencies (unzip/cabextract/curl/mono-complete)..."
-sudo apt install -y unzip cabextract curl mono-complete
+echo -e "\nUpdating sources..."
+
+sudo ${PACKAGEUPDATE}
+
+echo -e "\nInstalling dependencies (unzip/cabextract/curl/mono)..."
+sudo ${PACKAGEINSTALL}
 
 clear -x
 
@@ -45,6 +53,6 @@ unzip -q -o RemeshPackage.zip -d "${GAMEDIR}/Content/MeshReplace"
 cabextract -qq -d "${GAMEDIR}/game" "${TEMPDIR}/tso/Data1.cab"
 
 echo -e "\nCleaning up temporary files"
-sudo rm -R "${TEMPDIR}"
+rm -R "${TEMPDIR}"
 
-echo -e "\nInstall complete!\nRun game using: 'mono ${GAMEDIR}/FreeSO.exe -3d'"
+echo -e "\nInstall complete!\nRun game using: 'mono ${GAMEDIR}/FreeSO.exe' - add -3d flag to launch in 3D mode."
