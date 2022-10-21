@@ -81,6 +81,8 @@ printf "\nDownloading game icon from GitHub\n"
 curl -# -o ${GAMEDIR}/fso-icon.png https://cdn.statically.io/gh/tomgrice/freeso-linux/main/fso-icon.png
 
 printf "\nCreating launcher icons\n"
+mkdir -p ${HOME}/.local/share/applications
+
 cat > "${HOME}/.local/share/applications/FreeSO.desktop" << EOL
 [Desktop Entry]
 Version=1.0
