@@ -19,6 +19,7 @@ You must run the script as a local user (i.e, not root), however you will be ask
 ## Compatibility
 This script should work on any recent Ubuntu, RHEL/Fedora, Arch (Manjaro, EndeavourOS) or openSUSE based distributions, however it has been tested as working on these systems:
 * Ubuntu 22.04.01 LTS
+* Ubuntu 22.10
 * Pop_OS! 22.04 (Jammy)
 * EndeavourOS Artemis Nova 22.9 (Arch based)
 * Fedora 36
