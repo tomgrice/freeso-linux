@@ -10,7 +10,7 @@ GAMEDIR="none"
 
 while [ $GAMEDIR == 'none' ]
 do
-    read -p "Directory to install FreeSO [${HOME}/freeso]: " GAMEDIR
+    read -p "Directory to install FreeSO [${HOME}/freeso]: " GAMEDIR < /dev/tty
     GAMEDIR=${GAMEDIR:-${HOME}/freeso}
 
     if [ -z "${GAMEDIR%%/*}" ] && pathchk -pP "$GAMEDIR"
