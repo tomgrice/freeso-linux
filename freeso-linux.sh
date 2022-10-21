@@ -52,6 +52,36 @@ unzip -q -o RemeshPackage.zip -d "${GAMEDIR}/Content/MeshReplace"
 
 cabextract -qq -d "${GAMEDIR}/game" "${TEMPDIR}/tso/Data1.cab"
 
+echo -e "\nDownloading game icon from GitHub"
+curl -# -o ${GAMEDIR}/fso-icon.png https://cdn.statically.io/gh/tomgrice/freeso-linux/app-launcher/fso-icon.png
+
+echo -e "\nCreating launcher icons"
+cat > "${HOME}/.local/share/applications/FreeSO.desktop" << EOL
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=FreeSO
+Comment=Launch FreeSO (https://freeso.org)
+Exec=mono ${GAMEDIR}/FreeSO.exe
+Icon=${GAMEDIR}/fso-icon.png
+Terminal=false
+StartupNotify=false
+Categories=Game
+EOL
+
+cat > "${HOME}/.local/share/applications/FreeSO (3D).desktop" << EOL
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=FreeSO
+Comment=Launch FreeSO (https://freeso.org)
+Exec=mono ${GAMEDIR}/FreeSO.exe
+Icon=${GAMEDIR}/fso-icon.png
+Terminal=false
+StartupNotify=false
+Categories=Game
+EOL
+
 echo -e "\nCleaning up temporary files"
 rm -R "${TEMPDIR}"
 
