@@ -28,7 +28,7 @@ This script should work on any recent Ubuntu, RHEL/Fedora, Arch (Manjaro, Endeav
 ### Quick Start (one-liner)
 Open your Terminal and run the command:
 ```
-wget -O - https://raw.githubusercontent.com/tomgrice/freeso-linux/main/freeso-linux.sh | bash
+wget -qO freeso-linux.sh https://raw.githubusercontent.com/tomgrice/freeso-linux/main/freeso-linux.sh && bash freeso-linux.sh
 ```
 
 ### Manual Install
