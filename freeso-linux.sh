@@ -6,7 +6,27 @@ if [ "$EUID" -eq 0 ]
 fi
 
 TEMPDIR="$HOME/.freeso_temp"
-GAMEDIR="$HOME/freeso"
+GAMEDIR=0
+
+while [ $GAMEDIR -eq 0 ]
+do
+    read -p "Directory to install FreeSO [${HOME}/freeso]: " GAMEDIR
+    GAMEDIR=${GAMEDIR:-${HOME}/freeso}
+
+    mkdir -p $GAMEDIR
+
+    if [ -d $GAMEDIR ]
+    then
+        echo "Installing to $GAMEDIR."
+        
+    else
+        echo "$GAMEDIR is not a valid directory."
+        GAMEDIR=0
+    fi
+
+done
+
+
 
 echo "Temporary install file location: $TEMPDIR"
 echo "Game file location: $GAMEDIR"
@@ -53,7 +73,7 @@ unzip -q -o RemeshPackage.zip -d "${GAMEDIR}/Content/MeshReplace"
 cabextract -qq -d "${GAMEDIR}/game" "${TEMPDIR}/tso/Data1.cab"
 
 echo -e "\nDownloading game icon from GitHub"
-curl -# -o ${GAMEDIR}/fso-icon.png https://cdn.statically.io/gh/tomgrice/freeso-linux/app-launcher/fso-icon.png
+curl -# -o ${GAMEDIR}/fso-icon.png https://cdn.statically.io/gh/tomgrice/freeso-linux/main/fso-icon.png
 
 echo -e "\nCreating launcher icons"
 cat > "${HOME}/.local/share/applications/FreeSO.desktop" << EOL
@@ -73,9 +93,9 @@ cat > "${HOME}/.local/share/applications/FreeSO (3D).desktop" << EOL
 [Desktop Entry]
 Version=1.0
 Type=Application
-Name=FreeSO
+Name=FreeSO (3D)
 Comment=Launch FreeSO (https://freeso.org)
-Exec=mono ${GAMEDIR}/FreeSO.exe
+Exec=mono ${GAMEDIR}/FreeSO.exe -3d
 Icon=${GAMEDIR}/fso-icon.png
 Terminal=false
 StartupNotify=false
@@ -85,4 +105,4 @@ EOL
 echo -e "\nCleaning up temporary files"
 rm -R "${TEMPDIR}"
 
-echo -e "\nInstall complete!\nRun game using: 'mono ${GAMEDIR}/FreeSO.exe' - add -3d flag to launch in 3D mode."
+echo -e "\nInstall complete!\nRun game using: 'mono ${GAMEDIR}/FreeSO.exe' - add -3d flag to launch in 3D mode.\nOr alternatively, run the game from your system menu."
