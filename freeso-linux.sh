@@ -1,70 +1,75 @@
 #!/bin/bash
 
 if [ "$EUID" -eq 0 ]
-    then echo "Please run with local user, not sudo"
+    then printf "Please run with local user, not sudo\n"
     exit
 fi
 
 TEMPDIR="$HOME/.freeso_temp"
-GAMEDIR=0
+GAMEDIR="none"
 
-while [ $GAMEDIR -eq 0 ]
+while [ $GAMEDIR == 'none' ]
 do
     read -p "Directory to install FreeSO [${HOME}/freeso]: " GAMEDIR
     GAMEDIR=${GAMEDIR:-${HOME}/freeso}
 
-    mkdir -p $GAMEDIR
-
-    if [ -d $GAMEDIR ]
+    if [ -z "${GAMEDIR%%/*}" ] && pathchk -pP "$GAMEDIR"
     then
-        echo "Installing to $GAMEDIR."
-        
-    else
-        echo "$GAMEDIR is not a valid directory."
-        GAMEDIR=0
-    fi
+        mkdir -p $GAMEDIR
 
+        if [ -d $GAMEDIR ]
+        then
+            printf "Installing to $GAMEDIR.\n"
+            
+        else
+            printf "$GAMEDIR is not a valid directory.\n"
+            GAMEDIR="none"
+        fi
+    else
+        printf "$GAMEDIR is not a full absolute path (e.g. $HOME/freeso)\n"
+        GAMEDIR="none"
+    fi
 done
 
 
 
-echo "Temporary install file location: $TEMPDIR"
-echo "Game file location: $GAMEDIR"
+printf "Temporary install file location: $TEMPDIR\n"
+printf "Game file location: $GAMEDIR\n"
 
 mkdir -p $TEMPDIR && cd $TEMPDIR
 mkdir -p $GAMEDIR
 
-echo -e "\nDetermining package manager..."
+printf "\nDetermining package manager...\n"
 if which apt; then PACKAGEUPDATE="apt update -y"; PACKAGEINSTALL="apt install -y unzip cabextract curl mono-complete"; fi
 if which pacman; then PACKAGEUPDATE="pacman -Syy"; PACKAGEINSTALL="pacman -S --noconfirm unzip cabextract curl mono"; fi
 if which yum; then PACKAGEUPDATE="yum check-update -y"; PACKAGEINSTALL="yum install -y unzip cabextract curl mono-complete"; fi
 if which dnf; then PACKAGEUPDATE="dnf check-update -y"; PACKAGEINSTALL="dnf install -y unzip cabextract curl mono-complete"; fi
 if which zypper; then PACKAGEUPDATE="zypper refresh"; PACKAGEINSTALL="zypper install -y unzip cabextract curl mono-complete"; fi
 
-echo -e "\nUpdating sources..."
+printf "\nUpdating sources...\n"
 
 sudo ${PACKAGEUPDATE}
 
-echo -e "\nInstalling dependencies (unzip/cabextract/curl/mono)..."
+printf "\nInstalling dependencies (unzip/cabextract/curl/mono)...\n"
 sudo ${PACKAGEINSTALL}
 
 clear -x
 
-echo -e "FreeSO Installer for Linux\nhttps://github.com/tomgrice/freeso-linux"
+printf "FreeSO Installer for Linux\nhttps://github.com/tomgrice/freeso-linux\n"
 
-echo -e "\nDownloading: TSO Game package"
+printf "\nDownloading: TSO Game package\n"
 curl -# -O https://beta.freeso.org/TSO.zip 
 
-echo -e "\nDownloading: FreeSO latest client (GitHub)"
+printf "\nDownloading: FreeSO latest client (GitHub)\n"
 curl -# -o "client-latest.zip" -L $(grep -oP '(http)(.*)(client)(.*)(\.zip)' <<< "$(curl -s https://api.github.com/repos/riperiperi/FreeSO/releases/latest)")
 
-echo -e "\nDownloading: macextras package"
+printf "\nDownloading: macextras package\n"
 curl -# -O https://freeso.org/stuff/macextras.zip
 
-echo -e "\nDownloading: Remesh package"
+printf "\nDownloading: Remesh package\n"
 curl -# -o "RemeshPackage.zip" https://beta.freeso.org/RemeshPackage.docx
 
-echo -e "\nExtracting game archives"
+printf "\nExtracting game archives\n"
 unzip -q -o client-latest.zip -d "${GAMEDIR}"
 unzip -q -o TSO.zip -d "${TEMPDIR}/tso"
 unzip -q -o macextras.zip -d "${GAMEDIR}"
@@ -72,10 +77,10 @@ unzip -q -o RemeshPackage.zip -d "${GAMEDIR}/Content/MeshReplace"
 
 cabextract -qq -d "${GAMEDIR}/game" "${TEMPDIR}/tso/Data1.cab"
 
-echo -e "\nDownloading game icon from GitHub"
+printf "\nDownloading game icon from GitHub\n"
 curl -# -o ${GAMEDIR}/fso-icon.png https://cdn.statically.io/gh/tomgrice/freeso-linux/main/fso-icon.png
 
-echo -e "\nCreating launcher icons"
+printf "\nCreating launcher icons\n"
 cat > "${HOME}/.local/share/applications/FreeSO.desktop" << EOL
 [Desktop Entry]
 Version=1.0
@@ -102,7 +107,7 @@ StartupNotify=false
 Categories=Game
 EOL
 
-echo -e "\nCleaning up temporary files"
+printf "\nCleaning up temporary files\n"
 rm -R "${TEMPDIR}"
 
-echo -e "\nInstall complete!\nRun game using: 'mono ${GAMEDIR}/FreeSO.exe' - add -3d flag to launch in 3D mode.\nOr alternatively, run the game from your system menu."
+printf "\nInstall complete!\nRun game using: 'mono ${GAMEDIR}/FreeSO.exe' - add -3d flag to launch in 3D mode.\nOr alternatively, run the game from your system menu.\n"
