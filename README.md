@@ -51,7 +51,7 @@ wget -qO freeso-linux.sh https://raw.githubusercontent.com/tomgrice/freeso-linux
 - [ ] ARM chip/Raspberry Pi support (arm64/armhf)
 - [ ] User to specify installation of optional packages (i.e RemeshPackage).
 - [ ] Automatic updating of optional components (i.e. RemeshPackage).
-- [ ] Slim down dependencies (specify required mono-* packages).
+- [x] Slim down dependencies (specify required mono-* packages).
 - [ ] Uninstall option.
 - [ ] Graphical UI (based on node.js/Svelte/Tauri).
 
