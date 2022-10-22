@@ -122,4 +122,4 @@ EOL
 printf "\nCleaning up temporary files\n"
 rm -R "${TEMPDIR}"
 
-printf "\nInstall complete!\nRun game using: 'mono ${GAMEDIR}/FreeSO.exe' - add -3d flag to launch in 3D mode.\nOr alternatively, run the game from your system menu.\n"
+printf "\nInstall complete!\nRun game using: 'mono ${GAMEDIR}/FreeSO.exe' - add -3d flag to launch in 3D mode.\nOr alternatively, run the game from your system menu.\nYou may need to restart your system for the game to show in your applications menu.\n"
