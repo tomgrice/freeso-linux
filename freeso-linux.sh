@@ -39,12 +39,22 @@ printf "Game file location: $GAMEDIR\n"
 mkdir -p $TEMPDIR && cd $TEMPDIR
 mkdir -p $GAMEDIR
 
+
+PACKAGEUPDATE="none"
+PACKAGEINSTALL="none"
+
 printf "\nDetermining package manager...\n"
-if which apt; then PACKAGEUPDATE="apt update -y"; PACKAGEINSTALL="apt install -y unzip cabextract curl mono-complete"; fi
+if which apt; then PACKAGEUPDATE="apt update -y"; PACKAGEINSTALL="apt install -y unzip cabextract curl mono-runtime mono-devel"; fi
 if which pacman; then PACKAGEUPDATE="pacman -Syy"; PACKAGEINSTALL="pacman -S --noconfirm unzip cabextract curl mono"; fi
-if which yum; then PACKAGEUPDATE="yum check-update -y"; PACKAGEINSTALL="yum install -y unzip cabextract curl mono-complete"; fi
-if which dnf; then PACKAGEUPDATE="dnf check-update -y"; PACKAGEINSTALL="dnf install -y unzip cabextract curl mono-complete"; fi
-if which zypper; then PACKAGEUPDATE="zypper refresh"; PACKAGEINSTALL="zypper install -y unzip cabextract curl mono-complete"; fi
+if which yum; then PACKAGEUPDATE="yum check-update -y"; PACKAGEINSTALL="yum install -y unzip cabextract curl mono-core mono-devel"; fi
+if which dnf; then PACKAGEUPDATE="dnf check-update -y"; PACKAGEINSTALL="dnf install -y unzip cabextract curl mono-core mono-devel"; fi
+if which zypper; then PACKAGEUPDATE="zypper refresh"; PACKAGEINSTALL="zypper install -y unzip cabextract curl mono-core mono-devel"; fi
+
+if [ $PACKAGEUPDATE == "none" ]
+then
+    printf "\nPackage Manager/OS not supported."
+    exit 1
+fi
 
 printf "\nUpdating sources...\n"
 
