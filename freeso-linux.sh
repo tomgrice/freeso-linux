@@ -8,7 +8,7 @@ fi
 TEMPDIR="$HOME/.freeso_temp"
 GAMEDIR="none"
 
-while [ $GAMEDIR == "none" ]
+while [ "$GAMEDIR" == "none" ]
 do
     read -p "Directory to install FreeSO [${HOME}/freeso]: " GAMEDIR
     GAMEDIR=${GAMEDIR:-${HOME}/freeso}
@@ -50,7 +50,7 @@ if which yum; then PACKAGEUPDATE="yum check-update -y"; PACKAGEINSTALL="yum inst
 if which dnf; then PACKAGEUPDATE="dnf check-update -y"; PACKAGEINSTALL="dnf install -y unzip cabextract curl mono-core mono-devel"; fi
 if which zypper; then PACKAGEUPDATE="zypper refresh"; PACKAGEINSTALL="zypper install -y unzip cabextract curl mono-core mono-devel"; fi
 
-if [ $PACKAGEUPDATE == "none" ]
+if [ "$PACKAGEUPDATE" == "none" ]
 then
     printf "\nPackage Manager/OS not supported."
     exit 1
