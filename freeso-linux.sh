@@ -49,6 +49,7 @@ if which pacman; then PACKAGEUPDATE="pacman -Syy"; PACKAGEINSTALL="pacman -S --n
 if which yum; then PACKAGEUPDATE="yum check-update -y"; PACKAGEINSTALL="yum install -y unzip cabextract curl mono-core mono-devel"; fi
 if which dnf; then PACKAGEUPDATE="dnf check-update -y"; PACKAGEINSTALL="dnf install -y unzip cabextract curl mono-core mono-devel"; fi
 if which zypper; then PACKAGEUPDATE="zypper refresh"; PACKAGEINSTALL="zypper install -y unzip cabextract curl mono-core mono-devel"; fi
+if which xbps-query; then PACKAGEUPDATE="xbps-install -Su"; PACKAGEINSTALL="xbps-install unzip cabextract curl mono mono-devel libgdiplus"; fi
 
 if [ "$PACKAGEUPDATE" == "none" ]
 then
