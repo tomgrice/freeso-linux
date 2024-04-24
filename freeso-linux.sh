@@ -69,16 +69,16 @@ clear -x
 printf "FreeSO Installer for Linux\nhttps://github.com/tomgrice/freeso-linux\n"
 
 printf "\nDownloading: TSO Game package\n"
-curl -# -o "TSO.zip" https://beta.freeso.org/LauncherResourceCentral/TheSimsOnline
+curl -# -L -o "TSO.zip" https://beta.freeso.org/LauncherResourceCentral/TheSimsOnline
 
 printf "\nDownloading: FreeSO latest client (GitHub)\n"
 curl -# -o "client-latest.zip" -L $(grep -oP '(http)(.*)(client)(.*)(\.zip)' <<< "$(curl -s https://api.github.com/repos/riperiperi/FreeSO/releases/latest)")
 
 printf "\nDownloading: macextras package\n"
-curl -# - "macextras.zip" https://beta.freeso.org/LauncherResourceCentral/MacExtras
+curl -# -L -o "macextras.zip" https://beta.freeso.org/LauncherResourceCentral/MacExtras
 
 printf "\nDownloading: Remesh package\n"
-curl -# -o "RemeshPackage.zip" https://beta.freeso.org/LauncherResourceCentral/3DModels
+curl -# -L -o "RemeshPackage.zip" https://beta.freeso.org/LauncherResourceCentral/3DModels
 
 printf "\nExtracting game archives\n"
 unzip -q -o client-latest.zip -d "${GAMEDIR}"
